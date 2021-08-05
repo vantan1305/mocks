@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   verifyModalData = {}
   // khai bao role
   roles: string[] = [];
+  id;
 
   constructor(private router:Router,
               private fb: FormBuilder,
@@ -75,6 +76,7 @@ export class LoginComponent implements OnInit {
         this.notifyService.showToast("logged in successfully!", 'success');
         this.invalidLogin = false;
         this.roles = this.oauthService.getUsers().roles;
+        this.id = this.oauthService.getUsers().id;
         this.saveCredentials();
         this.router.navigate(['home'])
       },

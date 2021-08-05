@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OauthLoginService } from '../../services/oauth-login.service';
 import { ProfileDataService } from 'src/app/services/data/profile-data.service';
 import { LoginComponent } from 'src/app/login/login.component';
+import { UserService } from 'src/app/services/user.service';
+import { MatSidenav } from '@angular/material/sidenav';
+
+
 
 @Component({
   selector: 'app-menu',
@@ -15,17 +19,29 @@ export class MenuComponent implements OnInit {
   showAdminBoard = false;
   showManagerBoard = false;
   showPmBoard = false;
-
-  // @Input() user: Users;
+  showUserBoard = false;
+  id:any;
   userName: any;
+  _profileUser:any;
+  public isOpened = false;
+  public totalStudents = 0;
+  sidenav!: MatSidenav;
+  avatar: any;
+
   constructor(
-    private oauthLogin: OauthLoginService
+    private oauthLogin: OauthLoginService,
+    private userService: UserService,
   ) {
-      // this.userName = localStorage.getItem("userName");
+    this.id = this.oauthLogin.getUsers().id;
     }
 
   ngOnInit() {
-    // console.log(this.user);
+    this.userService.getUser(this.id)
+      .subscribe(data => {
+        console.log(data)
+        this._profileUser = data;
+      }, error => console.log(error));
+
     this.invalidLogin = !!this.oauthLogin.getAuthToken();
 
     if(this.invalidLogin){
@@ -35,9 +51,12 @@ export class MenuComponent implements OnInit {
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
       this.showPmBoard = this.roles.includes('ROLE_PM');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
 
       this.userName = user.userName;
     }
   }
+
+
 
 }

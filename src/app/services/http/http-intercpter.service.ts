@@ -14,25 +14,12 @@ export class HttpIntercpterService implements HttpInterceptor {
     private jwtHelperService:JwtHelperService
     ) { }
 
-  // intercept(req: HttpRequest<any>, next: HttpHandler) {
-
-  //   let authToken = this.oauthService.getAuthToken();
-  //   if(authToken != null) {
-  //     req = req.clone({
-  //       setHeaders: {
-  //         Authorization: authToken
-  //       }
-  //     })
-  //   }
-
-  //   return next.handle(req);
-  // }
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     if (token && this.jwtHelperService.isTokenExpired(token, new Date().getTime())){
-      request = request.clone({headers: request.headers.set('Authorization', `Bearer ${token}`)
-        .set('Content-Type', 'application/json')});
+      request = request.clone({headers: request.headers.set('Authorization' ,`Bearer ${token}`)
+        // .set('Content-Type', 'application/json')
+      });
     }
     return next.handle(request);
   }

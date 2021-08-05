@@ -1,232 +1,61 @@
-<div class="container emp-profile">
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" (change)="onSelectedFile($event)">
-                        <img [src]="imgURL" height="200" *ngIf="imgURL">
-                    </div>
-                    <div class="profile-img">
-                      <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" type="button" (click)="updateAvatar()" value="updateAvatar">
-                        Upload file
-                      </button>
-                    </div>
-                </div>
-            </div>
-            <!-- <div *ngIf=message>{{message}}</div> -->
-
-              <!-- <div class="col-md-12">
-                  <div *ngIf=retrievedImage>
-                      <img [src]="retrievedImage">
-                  </div>
-              </div> -->
-            <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
-            <div *ngIf="errorMsg" class="alert alert-danger" role="alert">{{ errorMsg }}</div>
-        </div>
-
-
-
-          <div class="row">
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5>
-                        {{userName}}
-                    </h5>
-                    <h6>
-                       Chuyên Ngành :{{specialized}}
-                    </h6>
-                    <!-- <p class="proile-rating">Staff Type : <span>{{staffType}}</span></p> -->
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                aria-controls="profile" aria-selected="false">Timeline</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button class="profile-edit-btn" *ngIf="!isEditable" name="editProfile" (click)="allowEditing()">Edit Profile</button>
-                <button type="submit" *ngIf="isEditable" class="profile-save-btn" name="saveProfile" (click)="saveProfile()">Save Changes</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>SOCIAL MEDIA PROFILES</p>
-                    <a href="">Website Link</a><br />
-                    <a href="">Bootsnipp Profile</a><br />
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br />
-                    <a href="">Web Developer</a><br />
-                    <a href="">WordPress</a><br />
-                    <a href="">WooCommerce</a><br />
-                    <a href="">PHP, .Net</a><br />
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>User Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="text" [disabled]="!isEditable"
-                                    placeholder="Enter name" name = "userName"
-                                    [value]="userName">
-                            </div>
-                        </div>
-                        <!-- <div class="row">
-                            <div class="col-md-4">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="email" [disabled]="isEditable"
-                                    placeholder="Enter email" [value]="email">
-                            </div>
-                        </div> -->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="Phone" [disabled]="!isEditable"
-                                    placeholder="Enter phone no" [value]="phone">
-                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>First Name</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="text" name="firstName" [disabled]="!isEditable"
-                                  placeholder="Enter phone no" [value]="firstName">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>Middle Name</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="text" name="middleName" [disabled]="!isEditable"
-                                  placeholder="Enter phone no" [value]="middleName">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>Last Name</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="text" name="lastName" [disabled]="!isEditable"
-                                  placeholder="Enter phone no" [value]="lastName">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>Date of Birth</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="date" name="dob" [disabled]="!isEditable"
-                                  placeholder="Enter phone no" [value]="dob">
-                          </div>
-                      </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>Specialized</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="text" name="specialized" [disabled]="!isEditable"
-                                  placeholder="Enter your specialized" [value]="specialized">
-                          </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                            <label>Staff Type</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select [disabled]="!isEditable" name="staffType">
-                            <option *ngFor="let staffType of staffType" >{{staffType.viewValue}}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                            <label>Education</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select [disabled]="!isEditable" name="education">
-                            <option *ngFor="let education of education" >{{education.viewValue}}</option>
-                          </select>
-                        </div>
-                      </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                              <label>School</label>
-                          </div>
-                          <div class="col-md-6">
-                              <input type="text" name="school" [disabled]="!isEditable"
-                                  placeholder="Enter specialized" [value]="school">
-                          </div>
-                        </div>
-                    </div>
-
-                    <!--  -->
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Experience</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Hourly Rate</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10$/hr</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Total Projects</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>230</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>English Level</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Availability</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6 months</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div>
+  <app-menu></app-menu>
 </div>
+<div class="card" style="width: 500px;margin-left: 500px;">
+  <div class="card-body">
+    <div>
+      <div class="form-group">
+        <span>Avatar</span>
+        <img src="{{profileUser.avatar}}" alt="" height="150" width="150">
+      </div>
+      <div class="form-group">
+        <span>Email : {{profileUser.email}}</span>
+      </div>
+      <div>
+        <span>User Name : {{profileUser.userName}}</span>
+      </div>
+      <div>
+        <span>First Name : {{profileUser.firstName}}</span>
+      </div>
+      <div>
+        <span>Middle Name : {{profileUser.middleName}}</span>
+      </div>
+      <div>
+        <span>Last Name : {{profileUser.lastName}}</span>
+      </div>
+      <div>
+        <span>DOB : {{this.dob}}</span>
+      </div>
+      <div>
+        <span>Staff Type : {{profileUser.staffType}}</span>
+      </div>
+      <div>
+        <span>Education : {{profileUser.education}}</span>
+      </div>
+      <div>
+        <span>Sex : {{profileUser.sex}}</span>
+      </div>
+      <div>
+        <span>School : {{profileUser.school}}</span>
+      </div>
+      <div>
+        <span>HomeTown : {{profileUser.homeTown}}</span>
+      </div>
+      <div>
+        <span>IdentityCard : {{profileUser.identityCard}}</span>
+      </div>
+      <div>
+        <span>Phone : {{profileUser.phone}}</span>
+      </div>
+      <div>
+        <span>Specialized : {{profileUser.specialized}}</span>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right" (click)="editProfile()">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

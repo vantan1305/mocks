@@ -30,19 +30,12 @@ export class OauthLoginService {
     return this.http.post<any>(Constants.API_BASE_URL + '/api/auth/signup', user);
   }
 
-  // uploadFile( file: File , id : number ) : Observable<any>
-  // {
-  //   let url = Constants.API_BASE_URL + '/updateAvatar/' + id ;
-
-  //   const formdata: FormData = new FormData();
-
-  //   formdata.append('file', file);
-
-  //   return this.http.post(url , formdata);
-  // }
-
   getVerificationLink(email) {
     return this.http.post<any>(Constants.API_BASE_URL + '/api/auth/send-email', email);
+  }
+
+  senMailHappyBirthDay(email){
+    return this.http.post<any>(Constants.API_BASE_URL + '/api/auth/send-email-to-birthday', email);
   }
 
   getOtp(body) {
@@ -65,14 +58,6 @@ export class OauthLoginService {
   setAuthToken(token) {
     localStorage.setItem(TOKEN, token);
   }
-
-  // setUserName(userName){
-  //   localStorage.setItem(userName, "userName")
-  // }
-  // getUserName(userName){
-  //   if(localStorage.getItem("userName"))
-  //   return localStorage.getItem("userName")
-  // }
 
   isUserLoggedIn() {
     let token = localStorage.getItem(TOKEN)

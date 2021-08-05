@@ -1,7 +1,51 @@
-<!-- <div *ngIf="onParentLoaded">
-    <app-menu [user]="user"></app-menu>
-</div> -->
+
 <div>
     <app-menu></app-menu>
 </div>
-<router-outlet></router-outlet>
+<h2>User List</h2>
+<br>
+<table id="customers">
+  <tr>
+    <th>ID</th>
+    <th>Email</th>
+    <th>User Name</th>
+    <th>Staff Type</th>
+    <th>Education</th>
+    <th>IdentityCard</th>
+    <th>Phone</th>
+    <th>Specialized</th>
+    <!-- <th>Dob</th> -->
+    <th>Avatar</th>
+    <!-- <div *ngIf="showManagerBoard"></div> -->
+    <th *ngIf="showManagerBoard" value="Acction">Acction</th>
+  </tr>
+  <tr *ngFor="let user of profileUser1| paginate: { itemsPerPage: 5, currentPage: p }">
+    <!-- <td>{{i + 1}}</td> -->
+    <td>{{user?.id}}</td>
+    <td>{{user?.email}}</td>
+    <td>{{user?.userName}}</td>
+    <td>{{user?.staffType}}</td>
+    <td>{{user?.education}}</td>
+    <td>{{user?.identityCard}}</td>
+    <td>{{user?.phone}}</td>
+    <td>{{user?.specialized}}</td>
+    <!-- <td>{{this.dob}}</td> -->
+    <!-- <td *ngIf="user?.dob">{{this.dob}}</td> -->
+    <td align="center"><img *ngIf="user?.avatar" src="{{user?.avatar}}" height="50px;"/></td>
+
+    <td *ngIf="showManagerBoard">
+      <mat-icon style="cursor: pointer;" title="Click to delete data" (click)="deletaData(user.id)">
+        delete
+      </mat-icon>
+      &nbsp;
+      <mat-icon style="cursor: pointer;" title="Click to edit data" (click)="editData(user.id)">
+        edit
+      </mat-icon>
+    </td>
+  </tr>
+</table>
+<div class="col-md-12" style="padding-top: 20px">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<!-- <router-outlet></router-outlet> -->

@@ -38,12 +38,4 @@ export class ProfileDataService {
   getUserInfo() {
     return this.http.get<any>(Constants.API_BASE_URL + '/api/role/user/all');
   }
-
-  // public saveOrUpdate(formData: any): Observable<any>{
-  //   return this.http.post(Constants.API_BASE_URL + '/api/role/user/update', formData);
-  // }
-
-  // public saveOrUpdate(file:File, id: number):Observable<any>{
-  //   return this.http.post(Constants.API_BASE_URL + '/api/role/user/update', + id);
-  // }
 }

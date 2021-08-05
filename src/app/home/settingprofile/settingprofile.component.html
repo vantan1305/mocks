@@ -1,0 +1,107 @@
+
+<div>
+  <app-menu></app-menu>
+</div>
+<div class="card" style="width: 500px;margin-left: 500px;">
+  <div class="card-body">
+    <div>
+      <div class="form-group">
+        <label for="avatar"></label>
+        <input class="form_control" type="file" id="avatar" placeholder="avatar" name="avatar" required (change)="selectFile($event)">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" id="email" placeholder="Email" required [(ngModel)]="users.email" name="email">
+        <div class="text-danger" *ngIf=" users.email.errors?.required">This field is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="specialized">Specialized</label>
+        <input class="form-control" type="text" id="specialized" placeholder="Specialized" required [(ngModel)]="users.specialized" name="specialized">
+        <!-- <div class="text-danger" *ngIf=" uploadForm.controls.specialized.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input class="form-control" type="text" id="phone" placeholder="Phone" required [(ngModel)]="users.phone" name="phone">
+        <!-- <div class="text-danger" *ngIf="uploadForm.controls.phone.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="identityCard">IdentityCard</label>
+        <input class="form-control" type="text" id="identityCard" placeholder="IdentityCard" required [(ngModel)]="users.identityCard" name="identityCard">
+        <!-- <div class="text-danger" *ngIf="uploadForm.controls.identityCard.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="homeTown">HomeTown</label>
+        <input class="form-control" type="text" id="homeTown" placeholder="HomeTown" required [(ngModel)]="users.homeTown" name="homeTown">
+        <!-- <div class="text-danger" *ngIf="uploadForm.controls.homeTown.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="school">School</label>
+        <input class="form-control" type="text" id="school" placeholder="School" required [(ngModel)]="users.school" name="school">
+        <!-- <div class="text-danger" *ngIf="uploadForm.controls.school.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="firstName">FirstName</label>
+        <input class="form-control" type="text" id="firstName" placeholder="FirstName" required [(ngModel)]="users.firstName" name="firstName">
+        <!-- <div class="text-danger" *ngIf="uploadForm.controls.firstName.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="lastName">LastName</label>
+        <input class="form-control" type="text" id="lastName" placeholder="LastName" required [(ngModel)]="users.lastName" name="lastName">
+        <!-- <div class="text-danger" *ngIf=" uploadForm.controls.lastName.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="middleName">MiddleName</label>
+        <input class="form-control" type="text" id="middleName" placeholder="MiddleName" required [(ngModel)]="users.middleName" name="middleName">
+        <!-- <div class="text-danger" *ngIf=" uploadForm.controls.middleName.errors?.required">This field is required.
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of birth</label>
+        <input class="form-control" type="text" id="dob" placeholder="Date of birth" required [(ngModel)]="users.dob" name="dob">
+      </div>
+      <div class="form-group">
+        <label for="sex">Sex</label>
+        <select class="form-control" id="sex" placeholder="Sex" required [(ngModel)]="users.sex" name="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="education">Education</label>
+        <select id="education" class="form-control" placeholder="Education" required [(ngModel)]="users.education" name="education">
+          <option value="college">College</option>
+          <option value="University">University</option>
+          <option value="Apprentice">Apprentice</option>
+          <option value="Postgraduate">Postgraduate</option>
+          <option value="Doctor">Doctor</option>
+          <option value="Master">Master</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="staffType">Staff Type</label>
+        <select id="staffType" class="form-control" placeholder="Staff Type" required [(ngModel)]="users.staffType" name="staffType">
+          <option value="Collaborators">Collaborators</option>
+          <option value="Intership">Intership</option>
+          <option value="Probation">Probation</option>
+          <option value="Official">Official</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right" (click)="updateProfile()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

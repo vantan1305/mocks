@@ -14,12 +14,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
-  { 
-    path: 'home', 
-    component: HomeComponent,
-    children: Home_Module_routes
-    // canActivate: [RouteGuardService] 
-  },
+  { path: 'home', component: HomeComponent,
+  children: Home_Module_routes
+},
   { path: 'oauth2/redirect', component: Oauth2Handler },
   { path: 'externalRedirect', canActivate: [externalUrlProvider], component: NotFoundComponent },
   { path: 'logout', component: LogoutComponent }

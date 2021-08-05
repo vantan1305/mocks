@@ -19,8 +19,6 @@ export class SignupComponent implements OnInit {
   // ??
   signupInfo: SignUpInfo;
 
-  // selectedFiles: FileList;
-  // currentFileUpload: File;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +33,6 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([Validators.required, this.customValidator.patternValidator()])],
       confirmPassword: ['', [Validators.required]],
-      // avatar:new FormControl()
       }, {
         validator: this.customValidator.MatchPassword("password", "confirmPassword")
       }
@@ -45,16 +42,6 @@ export class SignupComponent implements OnInit {
       body: ""
     }
   }
-
-  // selectFile(event) {
-  //   const file = event.target.files.item(0);
-
-  //   if (file.type.match('image.*')) {
-  //     this.selectedFiles = event.target.files;
-  //   } else {
-  //     alert('invalid format!');
-  //   }
-  // }
 
   get signupFormControl() {
     return this.signupForm.controls;
@@ -72,44 +59,11 @@ export class SignupComponent implements OnInit {
     let user = {
       userName: this.signupForm.value.userName,
       email: this.signupForm.value.email,
-      password: this.signupForm.value.password
+      password: this.signupForm.value.password,
     }
     this.oauthService.userSignup(user).subscribe(
       response => {
-        // ??
-        // let result = response.json();
-        // console.log(result);
-        // {
-        //   if(this.selectedFiles != null)
-        //   {
-        //     this.currentFileUpload = this.selectedFiles.item(0);
-        //     console.log(this.currentFileUpload);
 
-        //     this.oauthService.uploadFile(this.currentFileUpload , result).subscribe(
-        //         res => {
-
-        //           let re = res.json();
-        //            if(re > 0)
-        //            {
-        //               alert("file upload successfully ");
-        //               this.signupForm.get('userName').setValue("");
-        //               this.signupForm.get('email').setValue("");
-        //               this.signupForm.get('password').setValue("");
-        //               this.signupForm.get('avatar').setValue("");
-        //            }
-        //            else{
-        //               alert("error while uploading fie details");
-        //            }
-        //         },
-        //         err => {
-        //             alert("error while uploading fie details");
-        //         }
-        //     );
-
-        //   }
-        // }
-
-        // ??
         this.errorMessage = null;
         this.showModal();
         console.log(response)

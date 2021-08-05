@@ -22,6 +22,18 @@ import { ExternalUrlDirective } from './directives/external-url.directive';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import { UserService } from './services/user.service';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatInputModule } from '@angular/material/input';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +44,7 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
     SocialLoginComponent,
     ExternalUrlDirective,
     NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -43,6 +56,15 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
     AngularBootstrapToastsModule,
     HomeModule,
     SharedModule,
+    HttpClientModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
     ToastNotificationsModule.forRoot(
       {
         duration: 6000, type: 'primary',
@@ -52,7 +74,7 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
     )
   ],
   providers: [
-
+    UserService,
     JwtHelperService,
     {
       provide: JWT_OPTIONS,

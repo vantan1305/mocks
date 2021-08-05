@@ -9,11 +9,15 @@ import { NotificationService } from '../services/notification.service';
 })
 export class LogoutComponent implements OnInit {
 
-    constructor(private authService: OauthLoginService, 
+    constructor(private authService: OauthLoginService,
                 private router: Router,
                 private notifyService: NotificationService) {}
-    
+
     ngOnInit() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('auth-user');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('email');
         this.authService.removeToken();
         this.notifyService.showToast('logged out successfully', 'info');
         this.router.navigate(['login']);
