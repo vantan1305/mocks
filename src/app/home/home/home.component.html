@@ -2,13 +2,38 @@
 <div>
     <app-menu></app-menu>
 </div>
-<h2>User List</h2>
+<h2 style="text-align: center;">User List</h2>
+<!-- Searching -->
+<div class="col-6 col-md-6" style="margin-left: 1150px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Search"
+      [(ngModel)]="seachFrom.seach"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 40px; width: 40px"
+      (click)="search()"
+    ></button>
+  </div>
+</div>
+
 <br>
 <table id="customers">
   <tr>
     <th>ID</th>
+    <th>
+      User Name
+      <mat-icon style="cursor: pointer" (click)="sortByCode('down')">
+        arrow_downward
+      </mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortByCode('up')">
+        arrow_upward
+      </mat-icon>
+    </th>
     <th>Email</th>
-    <th>User Name</th>
     <th>Staff Type</th>
     <th>Education</th>
     <th>IdentityCard</th>
@@ -19,11 +44,10 @@
     <!-- <div *ngIf="showManagerBoard"></div> -->
     <th *ngIf="showManagerBoard" value="Acction">Acction</th>
   </tr>
-  <tr *ngFor="let user of profileUser1| paginate: { itemsPerPage: 5, currentPage: p }">
-    <!-- <td>{{i + 1}}</td> -->
+  <tr *ngFor="let user of profileUser1 | paginate: { itemsPerPage: 5, currentPage: p }">
     <td>{{user?.id}}</td>
-    <td>{{user?.email}}</td>
     <td>{{user?.userName}}</td>
+    <td>{{user?.email}}</td>
     <td>{{user?.staffType}}</td>
     <td>{{user?.education}}</td>
     <td>{{user?.identityCard}}</td>
@@ -44,7 +68,7 @@
     </td>
   </tr>
 </table>
-<div class="col-md-12" style="padding-top: 20px">
+<div class="col-md-12" style="padding-top: 20px;text-align: center;">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
 

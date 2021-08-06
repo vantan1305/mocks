@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -44,6 +44,11 @@ export class UserService {
 
   public updateUserProfile(formData: any): Observable<any>{
     return this.http.put(Constants.API_BASE_URL + '/api/role/user/updateUser1', formData);
+  }
+
+  public searchDataUser(data:any): Observable<any>{
+    const params = new HttpParams().set('userName', data.seach);
+    return this.http.get(Constants.API_BASE_URL + '/api/role/user/search', {observe: 'body', params});
   }
 
 //   public uploadImage(file):Observable<any> {
